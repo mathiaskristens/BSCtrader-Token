@@ -145,8 +145,7 @@ contract BSCtrader is IERC20, ReentrancyGuard, Ownable {
         IERC20(usdc).approve(UniswapV2Router, amountIn);
 
         // Get minimum amount of tokens guaranteed
-        uint256[] memory amountOutMins = uniswapV2Router.getAmountsOut(amountIn, path);
-        uint256 amountOutMin = amountOutMins[path.length -1];
+        uint256 amountOutMin = uniswapV2Router.getAmountsOut(amountIn, path);
 
         //Swap usdc for bnb and send to seller
         uniswapV2Router.swapExactTokensForETH(
